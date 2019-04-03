@@ -150,6 +150,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Process-60GB-XML-data-in-Java" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/02/Process-60GB-XML-data-in-Java/">Process 60GB XML data in Java</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/02/Process-60GB-XML-data-in-Java/" class="archive-article-date">
+  	<time datetime="2019-04-03T03:24:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h4><p>In my recent project, I need to preprocess and retrieval the questions tagged as <code>python</code> as well as their corresponding answers from the dump files of Stack Overflow (.xml format). For some reason, I need to store the data both into another xml file and database.</p>
+<p>The data I want comes from the Posts.xml file, which is larger than 60GB, how to process it using my PC become a big issue, in other words, how to read and write are the two keys of this task.</p>
+<h4 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h4><ul>
+<li><p><strong>Read file and Write to XML</strong></p>
+<p>There are two different ways to process the xml file in Java, DOM and Event Driven. In this case, the DOM solution is not feasible since it requires to load all the file to build DOM tree. Obviously, event oriented way could be put into use perfectly, since it allow me to batch process the data. After comparing <a href="http://tutorials.jenkov.com/java-xml/sax-vs-stax.html" target="_blank" rel="noopener">StAX vs SAX</a>, I choose StAX for this task.</p>
+        
+          <a class="article-more-a" href="/2019/04/02/Process-60GB-XML-data-in-Java/#more">more >></a>
+        
+      
+
+      
+    </li></ul></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Data processing</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/02/Process-60GB-XML-data-in-Java/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Bytedance电面面经" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,38 +251,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～</p>
-<h4 id="Q1-简述进程线程"><a href="#Q1-简述进程线程" class="headerlink" title="Q1:简述进程线程"></a>Q1:简述进程线程</h4><p>A:进程是系统分配资源的独立单位,线程是系统调度的基本单位</p>
-<p>追问: 线程是否有独立内存？A:有，线程共享进程的内存空间，通过互斥锁独立访问</p>
-<h4 id="Q2-了解乐观锁悲观锁么"><a href="#Q2-了解乐观锁悲观锁么" class="headerlink" title="Q2:了解乐观锁悲观锁么"></a>Q2:了解乐观锁悲观锁么</h4><h5 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h5><p>该机制假设每次拿数据的时候都认为别人不会修改，因此不加锁，但在更新时会去判断在此期间别人是否有更新这个数据，使用版本号机制和CAS算法实现。<strong>适用于读操作多的应用，提高吞吐量。</strong></p>
-<h5 id="CAS算法-并未提问该算法，仅作为个人补充"><a href="#CAS算法-并未提问该算法，仅作为个人补充" class="headerlink" title="CAS算法(并未提问该算法，仅作为个人补充)"></a>CAS算法(并未提问该算法，仅作为个人补充)</h5><p>C(compare) A(and) S(swap). 无锁编程，即不使用锁的情况下实现多线程之间的变量同步，也就是在没有线程被阻塞的情况下实现变量的同步，所以也叫非阻塞同步（Non-blocking Synchronization。</p>
-<p>该算法涉及到三个操作数</p>
-<ul>
-<li>需要读写的内存值 V</li>
-<li>进行比较的值 A</li>
-<li>拟写入的新值 B</li>
-</ul>
-<p>算法主要思想如下：“我认为V的值应该为A，如果是，那么将V的值更新为B，否则不修改并告诉V的值实际为多少”。当且仅当 V 的值等于 A时，CAS通过原子方式用新值B来更新V的值，否则不会执行任何操作。在多个线程尝试修改同一内存时，只有一个线程可以修改成功，失败的线程不会被挂起，可以再次尝试</p>
-<h5 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h5><p>该机制假设每次拿到数据的时都认为别人会修改，所以每次拿到数据都会加锁。传统关系数据中的读锁写锁机就是这种机制</p>
-<h4 id="Q3-java里的同步实现方法"><a href="#Q3-java里的同步实现方法" class="headerlink" title="Q3:java里的同步实现方法"></a>Q3:java里的同步实现方法</h4><p>该部分并未完整答出，给出的答案是整理自网络，若有错误请指正。</p>
-<h5 id="synchronized-悲观锁"><a href="#synchronized-悲观锁" class="headerlink" title="synchronized(悲观锁)"></a>synchronized(悲观锁)</h5><p>该关键字调用java对象的内置锁，进而保护整个方法/对象 —&gt;<strong>可见java的方法也是对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//usage1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//usage2</span></span><br><span class="line"><span class="keyword">synchronized</span>(object)&#123; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h5><p>a.volatile关键字为域变量的访问提供了一种免锁机制，<br>b.使用volatile修饰域相当于告诉虚拟机该域可能会被其他线程更新，<br>c.因此每次使用该域就要重新计算，而不是使用寄存器中的值<br>d.volatile不会提供任何原子操作，它也不能用来修饰final类型的变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修饰需要同步的变量，该变量不能用final修饰</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> account;</span><br></pre></td></tr></table></figure>
-<h5 id="ReentrantLock-悲观锁"><a href="#ReentrantLock-悲观锁" class="headerlink" title="ReentrantLock(悲观锁)"></a>ReentrantLock(悲观锁)</h5><p><code>Java.util.concurrent</code>包中的ReentrantLock类是可重入，互斥，实现了Lock接口的锁</p>
-<h5 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h5><p>使用该类管理变量，则每个使用该变量的线程都获得该变量的副本，副本直接互相独立，可在线程中随意修改互不影响。</p>
-<h4 id="算法-amp-数据结构"><a href="#算法-amp-数据结构" class="headerlink" title="算法&amp;数据结构"></a>算法&amp;数据结构</h4><p>数据结构考题较为基础，因为是电面没有写码而是口述思路。后续补充相应代码</p>
-<h4 id="Q4-非递归的先序遍历2叉树"><a href="#Q4-非递归的先序遍历2叉树" class="headerlink" title="Q4:非递归的先序遍历2叉树"></a>Q4:非递归的先序遍历2叉树</h4><p>先序：根，左子节点，右子节点</p>
-<p>维护一个栈，将根结点压入栈。<br>进入循环，判断栈是否为空，非空则输出栈顶元素并出栈<br>判断该节点是否有子节点，按右子节点，左子节点顺序入栈。<br>循环次步骤</p>
-<h4 id="Q5-树的层次遍历"><a href="#Q5-树的层次遍历" class="headerlink" title="Q5:树的层次遍历"></a>Q5:树的层次遍历</h4><p>维护一个队列，将根结点入队<br>进入循环，判断队是否为空，非空则输出队首元素并出队<br>判断该节点是否有子节点，若有，则依次(左，右)入队<br>循环之</p>
-<h4 id="Q6-栈实现队列的功能"><a href="#Q6-栈实现队列的功能" class="headerlink" title="Q6:栈实现队列的功能"></a>Q6:栈实现队列的功能</h4><p>维护两个栈，S1负责接收入队元素，S2负责完成出队操作</p>
-<p>push:直接压入S1<br>poll: 判断S2是否为空，非空则将S2栈顶元素出栈作为输出，否则将S1中元素依次出栈压入S2，直到S1中只含一个元素，将其出栈作为输出</p>
-<h4 id="Q7-o-1-复杂度算栈内最大值"><a href="#Q7-o-1-复杂度算栈内最大值" class="headerlink" title="Q7:o(1)复杂度算栈内最大值"></a>Q7:o(1)复杂度算栈内最大值</h4><p>该题只要求O1时间复杂度，空间复杂度方面没有限制</p>
-<p>同样维护两个栈，S作为主栈存储元素，MaxS记录当前S中最大值</p>
-<p>Push:判断S是否为空，若为空，则将该元素X入栈S和MaxS，否则比较X与MaxS.head()，若X&gt;MaxS.head(),则将X压入两个栈，否则X入栈S，MaxS再次压入其栈顶元素</p>
-<p>Pop: S弹出元素后MaxS也出栈栈顶元素</p>
-<p>Max(S): 即MaxS.head() </p>
-<h4 id="Q8-amp-9-简述快排思想，递归的缺点"><a href="#Q8-amp-9-简述快排思想，递归的缺点" class="headerlink" title="Q8&amp;9:简述快排思想，递归的缺点"></a>Q8&amp;9:简述快排思想，递归的缺点</h4><p>基础题，不赘述</p>
-
+        
+          <a class="article-more-a" href="/2019/02/28/Bytedance电面面经/#more">more >></a>
+        
       
 
       
@@ -276,27 +327,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>This tutorial is to build a single node Hadoop platform on a ubuntu vm.</p>
-<h2 id="1-Install-Java-Oracle-JDK8"><a href="#1-Install-Java-Oracle-JDK8" class="headerlink" title="1.Install Java(Oracle JDK8)"></a>1.Install Java(Oracle JDK8)</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo add-apt-repository ppa:webupd8team/java</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install oracle-java8-installer</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> java -version <span class="comment">#check the version of jdk</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="2-Install-Hadoop"><a href="#2-Install-Hadoop" class="headerlink" title="2.Install Hadoop"></a>2.Install Hadoop</h2><p>Find the version of Hadoop you want to install from <a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">Apache Hadoop Releases page</a> and select the binary file and copy its link, then use shell to install as follow(here we choose the 3.2.0 for example):</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget https://www-eu.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz</span></span><br></pre></td></tr></table></figure>
-<p>Then extract the file and move it to /usr/local  directory</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tar -xzvf hadoop-3.2.0.tar.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo mv hadoop-3.2.0 /usr/<span class="built_in">local</span>/hadoop</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-Configuring-Hadoop’s-Java-Home"><a href="#3-Configuring-Hadoop’s-Java-Home" class="headerlink" title="3.Configuring Hadoop’s Java Home"></a>3.Configuring Hadoop’s Java Home</h2><p>Check the default Java path using following shell:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> readlink -f /usr/bin/java | sed <span class="string">"s:bin/java::"</span></span></span><br></pre></td></tr></table></figure>
-<p>Then to configure the Hadoop environment by edit the <code>Hadoop-env.sh</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo nano /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/hadoop-env.sh</span></span><br></pre></td></tr></table></figure>
-<p>You could use vim if you familiar with vim to edit.</p>
-<p>Then modify this file in one of the following options:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># two options both add one line after </span></span><br><span class="line"><span class="comment"># export JAVA_HOME=</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># method 1:set static value</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre/</span><br><span class="line"></span><br><span class="line"><span class="comment"># method 2: set dynamic value</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=$(readlink -f /usr/bin/java | sed <span class="string">"s:bin/java::"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="4-Runing-Hadoop"><a href="#4-Runing-Hadoop" class="headerlink" title="4.Runing Hadoop"></a>4.Runing Hadoop</h2><p>Now we should be able to run Hadoop:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> /usr/<span class="built_in">local</span>/hadoop/bin/hadoop</span></span><br></pre></td></tr></table></figure>
-<p>Or you can add hadoop to your <code>PATH</code> to easily run by editing the profile </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo nano /etc/profile</span></span><br></pre></td></tr></table></figure>
-<p>Add one line at the end of this file</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/hadoop/bin</span><br></pre></td></tr></table></figure>
-<p>Then save and exit, then run following shell to make this file take effect</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span></span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2019/02/06/Tutorial for Hadoop(1) single node/#more">more >></a>
+        
       
 
       
@@ -526,11 +559,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Cloud Computing</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Interview</a>
+                <a href="javascript:void(0)" class="js-tag color1">Data processing</a>
               </li>
             
             <div class="clearfix"></div>

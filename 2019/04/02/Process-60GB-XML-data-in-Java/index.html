@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/1 | Code the World</title>
+  <title>Process 60GB XML data in Java | Code the World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Code the World">
-<meta property="og:url" content="http://yoursite.com/archives/2019/01/index.html">
+  <meta name="description" content="ChallengesIn my recent project, I need to preprocess and retrieval the questions tagged as python as well as their corresponding answers from the dump files of Stack Overflow (.xml format). For some r">
+<meta name="keywords" content="Data processing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Process 60GB XML data in Java">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/Process-60GB-XML-data-in-Java/index.html">
 <meta property="og:site_name" content="Code the World">
+<meta property="og:description" content="ChallengesIn my recent project, I need to preprocess and retrieval the questions tagged as python as well as their corresponding answers from the dump files of Stack Overflow (.xml format). For some r">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-03T04:19:36.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code the World">
+<meta name="twitter:title" content="Process 60GB XML data in Java">
+<meta name="twitter:description" content="ChallengesIn my recent project, I need to preprocess and retrieval the questions tagged as python as well as their corresponding answers from the dump files of Stack Overflow (.xml format). For some r">
   
     <link rel="alternative" href="/atom.xml" title="Code the World" type="application/atom+xml">
   
@@ -148,49 +153,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Process-60GB-XML-data-in-Java" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/12/hello-world/" class="archive-article-date">
-  	<time datetime="2019-01-13T04:08:46.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/12/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      Process 60GB XML data in Java
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/04/02/Process-60GB-XML-data-in-Java/" class="archive-article-date">
+  	<time datetime="2019-04-03T03:24:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h4><p>In my recent project, I need to preprocess and retrieval the questions tagged as <code>python</code> as well as their corresponding answers from the dump files of Stack Overflow (.xml format). For some reason, I need to store the data both into another xml file and database.</p>
+<p>The data I want comes from the Posts.xml file, which is larger than 60GB, how to process it using my PC become a big issue, in other words, how to read and write are the two keys of this task.</p>
+<h4 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h4><ul>
+<li><p><strong>Read file and Write to XML</strong></p>
+<p>There are two different ways to process the xml file in Java, DOM and Event Driven. In this case, the DOM solution is not feasible since it requires to load all the file to build DOM tree. Obviously, event oriented way could be put into use perfectly, since it allow me to batch process the data. After comparing <a href="http://tutorials.jenkov.com/java-xml/sax-vs-stax.html" target="_blank" rel="noopener">StAX vs SAX</a>, I choose StAX for this task.</p>
+<a id="more"></a>
+<ul>
+<li><strong>Implement</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">staxWriter</span><span class="params">(String language,String path)</span> <span class="keyword">throws</span> XMLStreamException, FileNotFoundException</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Begin init"</span>);</span><br><span class="line">        Long begin = System.currentTimeMillis(),start = begin;</span><br><span class="line">        Qids = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        XMLInputFactory inputFactory = XMLInputFactory.newInstance();</span><br><span class="line">        XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();   inputFactory.setProperty(<span class="string">"http://www.oracle.com/xml/jaxp/properties/getEntityCountInfo"</span>, <span class="string">"yes"</span>);        inputFactory.setProperty(<span class="string">"http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit"</span>, Integer.MAX_VALUE);</span><br><span class="line"></span><br><span class="line">        XMLStreamReader questReader = inputFactory.createXMLStreamReader(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path)), <span class="string">"utf-8"</span>);</span><br><span class="line">        XMLStreamWriter writer = outputFactory.createXMLStreamWriter(<span class="keyword">new</span> FileOutputStream(Path.langPosts+language+<span class="string">"Posts.xml"</span>),<span class="string">"utf-8"</span>);</span><br><span class="line">  </span><br><span class="line">        System.out.println(<span class="string">"Init done, process begin"</span>);</span><br><span class="line">        <span class="keyword">int</span> rowCount = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//Q Id CreationDate Title Body</span></span><br><span class="line">        <span class="comment">//A Id ParentId CreationDate Body</span></span><br><span class="line">        String Id, CreationDate,ParentId, Title, Body, Tags, postTypeId;</span><br><span class="line"></span><br><span class="line">        writer.writeStartDocument(<span class="string">"UTF-8"</span>, <span class="string">"1.0"</span>);</span><br><span class="line">        writer.writeCharacters(<span class="string">"\n"</span>);</span><br><span class="line">        writer.writeStartElement(<span class="string">"posts"</span>);</span><br><span class="line">        writer.writeCharacters(<span class="string">"\n"</span>);</span><br><span class="line">        <span class="keyword">while</span> (questReader.hasNext()) &#123;</span><br><span class="line">            questReader.next();</span><br><span class="line">            <span class="keyword">if</span> (questReader.getEventType() == XMLStreamReader.START_ELEMENT) &#123;</span><br><span class="line">                <span class="keyword">if</span> (questReader.getLocalName().equals(<span class="string">"row"</span>)) &#123;</span><br><span class="line">                    postTypeId = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"PostTypeId"</span>);</span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">"1"</span>.equals(postTypeId))&#123;</span><br><span class="line">                        Tags = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Tags"</span>);</span><br><span class="line">                        <span class="keyword">if</span> (Tags != <span class="keyword">null</span> &amp;&amp; Tags.contains(language))&#123;</span><br><span class="line">                            Id = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Id"</span>);</span><br><span class="line">                            CreationDate = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"CreationDate"</span>);</span><br><span class="line">                            Title = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Title"</span>).toLowerCase();</span><br><span class="line">                            Body = questReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Body"</span>).toLowerCase().replace(<span class="string">"\n"</span>,<span class="string">"\\n"</span>).replace(<span class="string">"\r\n"</span>,<span class="string">"\\n"</span>);</span><br><span class="line">                            Qids.add(Id); rowCount++;</span><br><span class="line">                            writer.writeCharacters(<span class="string">"\t"</span>);</span><br><span class="line">                            writer.writeStartElement(<span class="string">"question"</span>);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Id"</span>,Id);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Date"</span>,CreationDate);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Title"</span>,Title);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Tags"</span>,Tags);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Body"</span>,Body);</span><br><span class="line">                            writer.writeEndElement();</span><br><span class="line">                            writer.writeCharacters(<span class="string">"\n"</span>);</span><br><span class="line">                            <span class="keyword">if</span> (rowCount % commitCount == <span class="number">0</span>)&#123;</span><br><span class="line">                                <span class="comment">//write to file</span></span><br><span class="line">                                writer.flush();</span><br><span class="line">                                <span class="keyword">long</span> now = System.currentTimeMillis();</span><br><span class="line">                                System.out.println(<span class="string">"Write "</span> + rowCount + <span class="string">" questions √ using "</span> +  (now - begin) / <span class="number">60000.0</span> + <span class="string">" mins"</span>);</span><br><span class="line">                                begin = now;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        writer.flush();</span><br><span class="line">        <span class="keyword">long</span> timeQ = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"Write all "</span> + rowCount + <span class="string">" questions √, using "</span> +  (timeQ - start) / <span class="number">60000.0</span> + <span class="string">" mins"</span>);</span><br><span class="line">        rowCount = <span class="number">0</span>;</span><br><span class="line">        XMLStreamReader answerReader = inputFactory.createXMLStreamReader(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path)), <span class="string">"utf-8"</span>);</span><br><span class="line">        begin = timeQ;</span><br><span class="line">        <span class="keyword">while</span> (answerReader.hasNext()) &#123;</span><br><span class="line">            answerReader.next();</span><br><span class="line">            <span class="keyword">if</span> (answerReader.getEventType() == XMLStreamReader.START_ELEMENT) &#123;</span><br><span class="line">                <span class="keyword">if</span> (answerReader.getLocalName().equals(<span class="string">"row"</span>)) &#123;</span><br><span class="line">                    postTypeId = answerReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"PostTypeId"</span>);</span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">"2"</span>.equals(postTypeId))&#123;</span><br><span class="line">                        ParentId = answerReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"ParentId"</span>);</span><br><span class="line">                        <span class="keyword">if</span> (Qids.contains(ParentId))&#123;</span><br><span class="line">                            Id = answerReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Id"</span>);</span><br><span class="line">                            CreationDate = answerReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"CreationDate"</span>);</span><br><span class="line">                            Body = answerReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Body"</span>).toLowerCase().replace(<span class="string">"\n"</span>,<span class="string">""</span>);</span><br><span class="line">                            rowCount++;</span><br><span class="line">                            writer.writeCharacters(<span class="string">"\t"</span>);</span><br><span class="line">                            writer.writeStartElement(<span class="string">"answer"</span>);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Id"</span>,Id);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"ParentId"</span>,ParentId);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Date"</span>,CreationDate);</span><br><span class="line">                            writer.writeAttribute(<span class="string">"Body"</span>,Body);</span><br><span class="line">                            writer.writeEndElement();</span><br><span class="line">                            writer.writeCharacters(<span class="string">"\n"</span>);</span><br><span class="line">                            <span class="keyword">if</span> (rowCount % commitCount == <span class="number">0</span>)&#123;</span><br><span class="line">                                <span class="comment">//write</span></span><br><span class="line">                                writer.flush();</span><br><span class="line">                                <span class="keyword">long</span> now = System.currentTimeMillis();</span><br><span class="line">                                System.out.println(<span class="string">"Write "</span> + rowCount + <span class="string">" answers √ using "</span> +  (now - begin) / <span class="number">60000.0</span> + <span class="string">" mins"</span>);</span><br><span class="line">                                begin = now;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        writer.writeEndElement();</span><br><span class="line">        writer.writeEndDocument();</span><br><span class="line">        writer.flush();</span><br><span class="line">        System.out.println(<span class="string">"Write all "</span> + rowCount + <span class="string">" answers √ using "</span> + (System.currentTimeMillis() - timeQ) / <span class="number">60000.0</span> + <span class="string">" mins"</span>);</span><br><span class="line"></span><br><span class="line">        writer.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>It took me 4hrs to finish the processing, retrieval about 4G data from the original file (60G), which is an acceptable performance.</p>
+</li>
+<li><p><strong>Read file and Write to Database</strong></p>
+<p>With the previous experience and result, this part become easier, I just process the output file of above code and store them into database.</p>
+<ul>
+<li><strong>Implement</strong>  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">xmlToDB</span><span class="params">(String path,String language)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//batch processing using StAX and store every row into database</span></span><br><span class="line">            <span class="comment">// timer starts</span></span><br><span class="line">            Long begin = System.currentTimeMillis();</span><br><span class="line">            <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">            String questionSql = <span class="string">"INSERT INTO questions VALUES (?,?,?,?)"</span>;</span><br><span class="line">            String answerSql = <span class="string">"INSERT INTO answers VALUES (?,?,?,?)"</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">this</span>.connection.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">            pst = connection.prepareStatement(questionSql);</span><br><span class="line"></span><br><span class="line">            XMLInputFactory inputFactory = XMLInputFactory.newInstance();</span><br><span class="line">            inputFactory.setProperty(<span class="string">"http://www.oracle.com/xml/jaxp/properties/getEntityCountInfo"</span>, <span class="string">"yes"</span>);</span><br><span class="line">            inputFactory.setProperty(<span class="string">"http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit"</span>, Integer.MAX_VALUE);</span><br><span class="line">            XMLStreamReader streamReader = inputFactory.createXMLStreamReader(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path+language+<span class="string">"Posts.xml"</span>)), <span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> rowCount = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//Q Id CreationDate Title Body</span></span><br><span class="line">            <span class="comment">//A Id ParentId CreationDate Body</span></span><br><span class="line">            String Id, ParentId, Title, Body, date;</span><br><span class="line">            BatchReplacer replacer = <span class="keyword">new</span> BatchReplacer();</span><br><span class="line">            <span class="keyword">while</span> (streamReader.hasNext()) &#123;</span><br><span class="line">                streamReader.next();</span><br><span class="line">                <span class="keyword">if</span> (streamReader.getEventType() == XMLStreamReader.START_ELEMENT) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (streamReader.getLocalName().equals(<span class="string">"posts"</span>)) <span class="keyword">continue</span>;</span><br><span class="line">                    Id = streamReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Id"</span>);</span><br><span class="line">                    date = streamReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Date"</span>);</span><br><span class="line">                    Body = streamReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Body"</span>);</span><br><span class="line">                    <span class="keyword">if</span> (streamReader.getLocalName().equals(<span class="string">"question"</span>)) &#123;</span><br><span class="line">                        Title = replacer.replace(streamReader.getAttributeValue(<span class="keyword">null</span>, <span class="string">"Title"</span>));</span><br><span class="line">                        pst.setInt(<span class="number">1</span>,Integer.valueOf(Id));</span><br><span class="line">                        pst.setString(<span class="number">2</span>,date);</span><br><span class="line">                        pst.setString(<span class="number">3</span>,Title);</span><br><span class="line">                        pst.setString(<span class="number">4</span>,Body);</span><br><span class="line">                        pst.addBatch();</span><br><span class="line">                        rowCount += <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">if</span> (rowCount % commitCount == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                pst.executeBatch();</span><br><span class="line">                                connection.commit();</span><br><span class="line">                                System.out.println(<span class="string">"Commit "</span> + rowCount + <span class="string">" questions √"</span>);</span><br><span class="line">                            &#125;<span class="keyword">catch</span> (SQLException sq)&#123;</span><br><span class="line">                                sq.printStackTrace();</span><br><span class="line">                                System.out.println(<span class="string">"Error in question sql at batch"</span> + rowCount / commitCount );</span><br><span class="line">                                pst.clearBatch();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (flag)&#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                pst.executeBatch();</span><br><span class="line">                                connection.commit();</span><br><span class="line">                            &#125;<span class="keyword">catch</span> (SQLException sq)&#123;</span><br><span class="line">                                sq.printStackTrace();</span><br><span class="line">                                System.out.println(<span class="string">"Error in question sql at last batch"</span>);</span><br><span class="line">                                pst.clearBatch();</span><br><span class="line">                            &#125;</span><br><span class="line">                            pst = connection.prepareStatement(answerSql);</span><br><span class="line">                            flag = <span class="keyword">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        ParentId = streamReader.getAttributeValue(<span class="keyword">null</span>,<span class="string">"ParentId"</span>);</span><br><span class="line">                        pst.setInt(<span class="number">1</span>,Integer.valueOf(Id));</span><br><span class="line">                        pst.setInt(<span class="number">2</span>,Integer.valueOf(ParentId));</span><br><span class="line">                        pst.setString(<span class="number">3</span>, date);</span><br><span class="line">                        pst.setString(<span class="number">4</span>,Body);</span><br><span class="line">                        pst.addBatch();</span><br><span class="line">                        rowCount += <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">if</span> (rowCount % commitCount == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                pst.executeBatch();</span><br><span class="line">                                connection.commit();</span><br><span class="line">                                System.out.println(<span class="string">"Commit "</span> + rowCount + <span class="string">" answers √"</span>);</span><br><span class="line">                            &#125;<span class="keyword">catch</span> (SQLException sq)&#123;</span><br><span class="line">                                sq.printStackTrace();</span><br><span class="line">                                System.out.println(<span class="string">"Error in answer sql at batch"</span> + rowCount / commitCount );</span><br><span class="line">                                pst.clearBatch();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                pst.executeBatch();</span><br><span class="line">                connection.commit();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException sq)&#123;</span><br><span class="line">                sq.printStackTrace();</span><br><span class="line">                System.out.println(<span class="string">"Error in answer sql at last batch"</span>);</span><br><span class="line">                pst.clearBatch();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"Process all "</span> + rowCount + <span class="string">" records √"</span>);</span><br><span class="line">            pst.close();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"Cost : "</span> + (System.currentTimeMillis() - begin) / <span class="number">60000</span> + <span class="string">" mins"</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>The reason of using PreparedStatement is that the Body contains lots of special characters such as <code>\n,\r,&#39;,&quot;</code> , which required to be escape, if simply using concat way to form the String into SQL statement, there will be exception. While the PreparedStatement could handle this issue.</p>
+<p>It took 13 mins to complete the storage, this performance was satisfactory.</p>
+</li>
+</ul>
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><ul>
+<li>Batch processing is a good way to save the memory and improve the efficency.</li>
+<li>Catch the exception is better than throws them, it helps you quickly find and fix bugs.</li>
+<li>For the field type (store string) in the mysql database, there are serval types for different string lengths, such as <code>varchar</code>, <code>text</code>, <code>mediumtext</code>, and <code>long text</code>.</li>
+</ul>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for donation<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Data processing</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/02/Process-60GB-XML-data-in-Java/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/02/28/Bytedance电面面经/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bytedance电面面经</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -213,8 +362,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

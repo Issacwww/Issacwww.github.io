@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Bytedance电面面经 | Code the World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～ Q1:简述进程线程A:进程是系统分配资源的独立单位,线程是系统调度的基本单位 追问: 线程是否有独立内存？A:有，线程共享进程的内存空间，通">
+  <meta name="description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～">
 <meta name="keywords" content="Interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bytedance电面面经">
 <meta property="og:url" content="http://yoursite.com/2019/02/28/Bytedance电面面经/index.html">
 <meta property="og:site_name" content="Code the World">
-<meta property="og:description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～ Q1:简述进程线程A:进程是系统分配资源的独立单位,线程是系统调度的基本单位 追问: 线程是否有独立内存？A:有，线程共享进程的内存空间，通">
+<meta property="og:description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-28T18:46:49.013Z">
+<meta property="og:updated_time" content="2019-04-03T04:18:20.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bytedance电面面经">
-<meta name="twitter:description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～ Q1:简述进程线程A:进程是系统分配资源的独立单位,线程是系统调度的基本单位 追问: 线程是否有独立内存？A:有，线程共享进程的内存空间，通">
+<meta name="twitter:description" content="这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～">
   
     <link rel="alternative" href="/atom.xml" title="Code the World" type="application/atom+xml">
   
@@ -174,6 +174,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这次电面是本人第一次求职面试，面试过程中也有一些问题答不上来或需要提示才能答出，但整体答题较为流畅，运气尚佳通过了此次面试。感谢前辈们分享的面经，也将此次面试经历记录并分享。虽然答案只是个人粗浅的理解，希望能对正在求职的小伙伴有帮助，也欢迎各位指出我的不足～</p>
+<a id="more"></a>
 <h4 id="Q1-简述进程线程"><a href="#Q1-简述进程线程" class="headerlink" title="Q1:简述进程线程"></a>Q1:简述进程线程</h4><p>A:进程是系统分配资源的独立单位,线程是系统调度的基本单位</p>
 <p>追问: 线程是否有独立内存？A:有，线程共享进程的内存空间，通过互斥锁独立访问</p>
 <h4 id="Q2-了解乐观锁悲观锁么"><a href="#Q2-了解乐观锁悲观锁么" class="headerlink" title="Q2:了解乐观锁悲观锁么"></a>Q2:了解乐观锁悲观锁么</h4><h5 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h5><p>该机制假设每次拿数据的时候都认为别人不会修改，因此不加锁，但在更新时会去判断在此期间别人是否有更新这个数据，使用版本号机制和CAS算法实现。<strong>适用于读操作多的应用，提高吞吐量。</strong></p>
@@ -287,6 +288,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/04/02/Process-60GB-XML-data-in-Java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Process 60GB XML data in Java
+        
+      </div>
+    </a>
   
   
     <a href="/2019/02/06/Tutorial for Hadoop(1) single node/" id="article-nav-older" class="article-nav-link-wrap">
@@ -429,11 +439,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Cloud Computing</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Interview</a>
+                <a href="javascript:void(0)" class="js-tag color1">Data processing</a>
               </li>
             
             <div class="clearfix"></div>
